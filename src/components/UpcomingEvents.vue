@@ -1,6 +1,6 @@
 <template>
-    <div>
-        hi
+    <div class="container">
+        <div class="text-6xl bg-blue">test</div>
     </div>
 </template>
 

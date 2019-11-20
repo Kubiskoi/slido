@@ -35,6 +35,7 @@
 
 <script>
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
+import * as IdGenerator from '../helpers/IdGenerator'
 
 export default {
   props: {
@@ -66,10 +67,11 @@ export default {
         console.log('err')
       } else {
         const formData = {
+          eventId: this.eveId,
           title: this.eveTitle,
           entry: this.eveEntry
         }
-        console.log(formData)
+        this.$store.dispatch('saveEvent', formData)
       }
     }
   },
@@ -79,7 +81,7 @@ export default {
       this.eveId = this.eventId
       this.submitButtonValue = 'update'
     } else {
-      this.eveId = 'omg'
+      this.eveId = IdGenerator.generateId()
     }
   }
 }

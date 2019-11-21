@@ -19,24 +19,22 @@
                         step="0.01"
                         placeholder="Entry $">
                 </div>
-                <div class="">
-                  <div class="sm:flex sm:justify-between">
+                <div class="sm:flex sm:justify-between">
                     <div class="mb-4 sm:w-5/12">
-                      <pikaday
-                        v-model="eveDate"
-                        placeholder="Date"
-                        class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
-                        :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"></pikaday>
+                        <pikaday
+                            v-model="eveDate"
+                            placeholder="Date"
+                            class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                            :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"></pikaday>
                     </div>
                     <div class="mb-4 sm:w-5/12">
-                      <vue-timepicker
-                        placeholder="Time"
-                        class="tp-wrap"
-                        :input-class="tp"
-                        v-model="eveTime"
-                        close-on-complete></vue-timepicker>
+                        <vue-timepicker
+                            placeholder="Time"
+                            class="tp-wrap"
+                            :input-class="tp"
+                            v-model="eveTime"
+                            close-on-complete></vue-timepicker>
                     </div>
-                  </div>
                 </div>
                 <div class="flex sm:justify-center">
                     <input

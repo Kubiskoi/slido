@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="max-w-sm md:mx-auto">
+        <div class="max-w-sm mx-auto">
             <form @submit.prevent="onSubmit">
                 <div class="mb-4">
                     <input
@@ -20,23 +20,25 @@
                         placeholder="Entry $">
                 </div>
                 <div class="">
-                  <div>
-                    <div class="mb-4">
+                  <div class="sm:flex sm:justify-between">
+                    <div class="mb-4 sm:w-5/12">
                       <pikaday
                         v-model="eveDate"
                         placeholder="Date"
                         class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
                         :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"></pikaday>
                     </div>
-                    <div class="mb-4 timepicker">
+                    <div class="mb-4 sm:w-5/12">
                       <vue-timepicker
-                        class="omg"
+                        placeholder="Time"
+                        class="tp-wrap"
+                        :input-class="tp"
                         v-model="eveTime"
                         close-on-complete></vue-timepicker>
                     </div>
                   </div>
                 </div>
-                <div class="flex md:justify-center">
+                <div class="flex sm:justify-center">
                     <input
                         type="submit"
                         class="capitalize mr-4 px-4 py-2 bg-green-600 text-white text-xs leading-none focus:outline-none"
@@ -86,6 +88,18 @@ export default {
     },
     eveDate: {
       required
+    },
+    eveTime: {
+      required
+    }
+  },
+  computed: {
+    tp () {
+      if (this.$v.eveTime.$error) {
+        return 'tp tp-error'
+      } else {
+        return 'tp tp-ok'
+      }
     }
   },
   methods: {
@@ -98,7 +112,8 @@ export default {
           eventId: this.eveId,
           title: this.eveTitle,
           entry: this.eveEntry,
-          date: this.eveDate
+          date: this.eveDate,
+          time: this.eveTime
         }
         this.$store.dispatch('saveEvent', formData)
       }
@@ -116,8 +131,23 @@ export default {
 }
 </script>
 
-<style scoped>
-  .timepicker span{
-    width: 100%;
-  }
+<style>
+.tp-wrap{
+  width: 100%;
+}
+
+.tp{
+  width: 100%!important;
+  height: 30px!important;
+  border: none!important;
+  outline: none!important;
+}
+
+.tp-ok{
+  border-bottom: 2px solid #38a169!important;
+}
+
+.tp-error{
+  border-bottom: 2px solid #e53e3e!important;
+}
 </style>

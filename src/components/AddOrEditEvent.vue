@@ -36,6 +36,15 @@
                             close-on-complete></vue-timepicker>
                     </div>
                 </div>
+                <div class="mb-4">
+                    <textarea
+                        placeholder="Description"
+                        v-model="eveDesc"
+                        class="desc appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                        :class="{ 'border-red-600': $v.eveDesc.$error, 'border-green-600': !$v.eveDesc.$error}"
+                        cols="30"
+                        rows="4"></textarea>
+                </div>
                 <div class="flex sm:justify-center">
                     <input
                         type="submit"
@@ -72,7 +81,8 @@ export default {
       eveTitle: '',
       eveEntry: '',
       eveDate: '',
-      eveTime: ''
+      eveTime: '',
+      eveDesc: ''
     }
   },
   validations: {
@@ -88,6 +98,9 @@ export default {
       required
     },
     eveTime: {
+      required
+    },
+    eveDesc: {
       required
     }
   },
@@ -111,7 +124,8 @@ export default {
           title: this.eveTitle,
           entry: this.eveEntry,
           date: this.eveDate,
-          time: this.eveTime
+          time: this.eveTime,
+          desc: this.eveDesc
         }
         this.$store.dispatch('saveEvent', formData)
       }
@@ -147,5 +161,9 @@ export default {
 
 .tp-error{
   border-bottom: 2px solid #e53e3e!important;
+}
+
+.desc{
+  resize: none;
 }
 </style>

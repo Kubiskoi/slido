@@ -16,6 +16,8 @@
 
 <script>
 import '@/assets/css/main.css'
+import 'pikaday/css/pikaday.css'
+import 'vue2-timepicker/dist/VueTimepicker.css'
 
 export default {
 }

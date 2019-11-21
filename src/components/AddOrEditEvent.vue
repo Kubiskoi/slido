@@ -19,6 +19,23 @@
                         step="0.01"
                         placeholder="Entry $">
                 </div>
+                <div class="">
+                  <div>
+                    <div class="mb-4">
+                      <pikaday
+                        v-model="eveDate"
+                        placeholder="Date"
+                        class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                        :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"></pikaday>
+                    </div>
+                    <div class="mb-4 timepicker">
+                      <vue-timepicker
+                        class="omg"
+                        v-model="eveTime"
+                        close-on-complete></vue-timepicker>
+                    </div>
+                  </div>
+                </div>
                 <div class="flex md:justify-center">
                     <input
                         type="submit"
@@ -34,6 +51,8 @@
 </template>
 
 <script>
+import Pikaday from '@idecardo/vue-pikaday'
+import VueTimepicker from 'vue2-timepicker'
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
 import * as IdGenerator from '../helpers/IdGenerator'
 
@@ -41,13 +60,19 @@ export default {
   props: {
     eventId: String
   },
+  components: {
+    Pikaday,
+    VueTimepicker
+  },
   data () {
     return {
       editing: false,
       submitButtonValue: 'save',
       eveId: '',
       eveTitle: '',
-      eveEntry: ''
+      eveEntry: '',
+      eveDate: '',
+      eveTime: ''
     }
   },
   validations: {
@@ -58,6 +83,9 @@ export default {
       required,
       decimal,
       mV: minValue(1)
+    },
+    eveDate: {
+      required
     }
   },
   methods: {
@@ -69,7 +97,8 @@ export default {
         const formData = {
           eventId: this.eveId,
           title: this.eveTitle,
-          entry: this.eveEntry
+          entry: this.eveEntry,
+          date: this.eveDate
         }
         this.$store.dispatch('saveEvent', formData)
       }
@@ -87,5 +116,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .timepicker span{
+    width: 100%;
+  }
 </style>

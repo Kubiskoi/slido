@@ -23,27 +23,27 @@
                     <div class="mb-4 sm:w-5/12">
                         <pikaday
                             v-model="eveDate"
-                            placeholder="Date"
                             class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
-                            :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"></pikaday>
+                            :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"
+                            placeholder="Date"></pikaday>
                     </div>
                     <div class="mb-4 sm:w-5/12">
                         <vue-timepicker
-                            placeholder="Time"
+                            v-model="eveTime"
                             class="tp-wrap"
                             :input-class="tp"
-                            v-model="eveTime"
+                            placeholder="Time"
                             close-on-complete></vue-timepicker>
                     </div>
                 </div>
                 <div class="mb-4">
                     <textarea
-                        placeholder="Description"
                         v-model="eveDesc"
                         class="desc appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
                         :class="{ 'border-red-600': $v.eveDesc.$error, 'border-green-600': !$v.eveDesc.$error}"
                         cols="30"
-                        rows="4"></textarea>
+                        rows="4"
+                        placeholder="Description"></textarea>
                 </div>
                 <div class="flex sm:justify-center">
                     <input
@@ -64,6 +64,7 @@ import Pikaday from '@idecardo/vue-pikaday'
 import VueTimepicker from 'vue2-timepicker'
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
 import * as IdGenerator from '../helpers/IdGenerator'
+import * as TimeStampCalc from '../helpers/TimeStampCalc'
 
 export default {
   props: {
@@ -125,7 +126,8 @@ export default {
           entry: this.eveEntry,
           date: this.eveDate,
           time: this.eveTime,
-          desc: this.eveDesc
+          desc: this.eveDesc,
+          ts: TimeStampCalc.calcTimestamp(this.eveDate, this.eveTime)
         }
         this.$store.dispatch('saveEvent', formData)
       }

@@ -1,6 +1,9 @@
 <template>
-    <div>
-        {{eventData.title}}
+    <div class="mb-4 flex">
+        <div>
+            <div>{{eventData.date}}</div>
+            <div>{{eventData.time}}</div>
+        </div>
     </div>
 </template>
 

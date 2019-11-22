@@ -1,7 +1,7 @@
 export default [
   {
     eventId: '9rR4s8UNM3sif2s',
-    title: 'upcoming',
+    title: 'upcmng',
     entry: 1,
     date: '2019-11-24',
     time: '02:02',

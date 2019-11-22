@@ -1,6 +1,6 @@
 <template>
-    <div class="md:flex">
-        <UpcomingEvents class="mb-10 md:w-5/12"/>
+    <div>
+        <UpcomingEvents/>
         <PastEvents/>
     </div>
 </template>

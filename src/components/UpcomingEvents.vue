@@ -3,6 +3,7 @@
         <h2 class="text-xl capitalize text-gray-600 mb-4">upcoming events</h2>
         <div>
             <Event v-for="event in events" :key="event.eventId" :event-data="event"/>
+            <div v-if="!eventsLength" class="capitalize p-5 font-thin text-gray-600">no upcoming events ...</div>
         </div>
     </div>
 </template>
@@ -18,6 +19,9 @@ export default {
     events () {
       let events = this.$store.getters.upcomingEvents
       return events.sort((a, b) => (a.ts >= b.ts) ? 1 : -1)
+    },
+    eventsLength () {
+      return this.events.length
     }
   }
 }

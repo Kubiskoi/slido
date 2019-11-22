@@ -1,6 +1,6 @@
 <template>
     <div class="lg:flex lg:justify-between">
-        <UpcomingEvents class="lg:w-5/12"/>
+        <UpcomingEvents class="mb-10 lg:w-5/12 lg:mb-0"/>
         <PastEvents class="lg:w-5/12"/>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="max-w-sm md:mx-auto">
+        <div class="max-w-sm mx-auto">
             <form @submit.prevent="onSubmit">
                 <div class="mb-4">
                     <input
@@ -19,7 +19,33 @@
                         step="0.01"
                         placeholder="Entry $">
                 </div>
-                <div class="flex md:justify-center">
+                <div class="sm:flex sm:justify-between">
+                    <div class="mb-4 sm:w-5/12">
+                        <pikaday
+                            v-model="eveDate"
+                            class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                            :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"
+                            placeholder="Date"></pikaday>
+                    </div>
+                    <div class="mb-4 sm:w-5/12">
+                        <vue-timepicker
+                            v-model="eveTime"
+                            class="tp-wrap"
+                            :input-class="tp"
+                            placeholder="Time"
+                            close-on-complete></vue-timepicker>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <textarea
+                        v-model="eveDesc"
+                        class="desc appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                        :class="{ 'border-red-600': $v.eveDesc.$error, 'border-green-600': !$v.eveDesc.$error}"
+                        cols="30"
+                        rows="4"
+                        placeholder="Description"></textarea>
+                </div>
+                <div class="flex sm:justify-center">
                     <input
                         type="submit"
                         class="capitalize mr-4 px-4 py-2 bg-green-600 text-white text-xs leading-none focus:outline-none"
@@ -34,12 +60,19 @@
 </template>
 
 <script>
+import Pikaday from '@idecardo/vue-pikaday'
+import VueTimepicker from 'vue2-timepicker'
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
 import * as IdGenerator from '../helpers/IdGenerator'
+import * as TimeStampCalc from '../helpers/TimeStampCalc'
 
 export default {
   props: {
     eventId: String
+  },
+  components: {
+    Pikaday,
+    VueTimepicker
   },
   data () {
     return {
@@ -47,7 +80,10 @@ export default {
       submitButtonValue: 'save',
       eveId: '',
       eveTitle: '',
-      eveEntry: ''
+      eveEntry: '',
+      eveDate: '',
+      eveTime: '',
+      eveDesc: ''
     }
   },
   validations: {
@@ -58,6 +94,24 @@ export default {
       required,
       decimal,
       mV: minValue(1)
+    },
+    eveDate: {
+      required
+    },
+    eveTime: {
+      required
+    },
+    eveDesc: {
+      required
+    }
+  },
+  computed: {
+    tp () {
+      if (this.$v.eveTime.$error) {
+        return 'tp tp-error'
+      } else {
+        return 'tp tp-ok'
+      }
     }
   },
   methods: {
@@ -69,7 +123,11 @@ export default {
         const formData = {
           eventId: this.eveId,
           title: this.eveTitle,
-          entry: this.eveEntry
+          entry: this.eveEntry,
+          date: this.eveDate,
+          time: this.eveTime,
+          desc: this.eveDesc,
+          ts: TimeStampCalc.calcTimestamp(this.eveDate, this.eveTime)
         }
         this.$store.dispatch('saveEvent', formData)
       }
@@ -88,4 +146,26 @@ export default {
 </script>
 
 <style>
+.tp-wrap{
+  width: 100%;
+}
+
+.tp{
+  width: 100%!important;
+  height: 30px!important;
+  border: none!important;
+  outline: none!important;
+}
+
+.tp-ok{
+  border-bottom: 2px solid #38a169!important;
+}
+
+.tp-error{
+  border-bottom: 2px solid #e53e3e!important;
+}
+
+.desc{
+  resize: none;
+}
 </style>

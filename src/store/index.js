@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import getTimeStamp from '../helpers/TimeStampSeconds'
+import getTimeStamp from '@/helpers/TimeStampSeconds'
 import events from './events'
 
 Vue.use(Vuex)

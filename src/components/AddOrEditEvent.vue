@@ -69,8 +69,8 @@
 import Pikaday from '@idecardo/vue-pikaday'
 import VueTimepicker from 'vue2-timepicker'
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
-import generateId from '../helpers/IdGenerator'
-import calcTimestamp from '../helpers/TimeStampCalc'
+import generateId from '@/helpers/IdGenerator'
+import calcTimestamp from '@/helpers/TimeStampCalc'
 
 export default {
   props: {

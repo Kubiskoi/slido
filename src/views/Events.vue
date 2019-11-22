@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <UpcomingEvents/>
-        <PastEvents/>
+    <div class="lg:flex lg:justify-between">
+        <UpcomingEvents class="lg:w-5/12"/>
+        <PastEvents class="lg:w-5/12"/>
     </div>
 </template>
 

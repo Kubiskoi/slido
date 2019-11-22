@@ -1,6 +1,6 @@
-import Events from '../views/Events.vue'
-import AddEvent from '../views/AddEvent.vue'
-import EditEvent from '../views/EditEvent.vue'
+import Events from '@/views/Events.vue'
+import AddEvent from '@/views/AddEvent.vue'
+import EditEvent from '@/views/EditEvent.vue'
 
 export default [
   {

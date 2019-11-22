@@ -17,7 +17,8 @@ export default {
   },
   computed: {
     events () {
-      return this.$store.getters.pastEvents
+      let events = this.$store.getters.pastEvents
+      return events.sort((a, b) => (a.ts <= b.ts) ? 1 : -1)
     }
   }
 }

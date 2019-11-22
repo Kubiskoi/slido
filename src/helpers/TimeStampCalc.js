@@ -1,6 +1,6 @@
 import moment from 'moment'
 
 export default function (date, time) {
-  var momentObject = moment(date + ' ' + time)
+  const momentObject = moment(date + ' ' + time)
   return momentObject.unix()
 }

@@ -136,8 +136,6 @@ export default {
           eventId: this.eveId,
           title: this.eveTitle,
           entry: this.eveEntry,
-          date: this.eveDate,
-          time: this.eveTime,
           desc: this.eveDesc,
           ts: calcTimestamp(this.eveDate, this.eveTime)
         }

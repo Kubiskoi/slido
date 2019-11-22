@@ -1,4 +1,4 @@
-export function generateId () {
+export default function () {
   // src
   // https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
   var result = ''

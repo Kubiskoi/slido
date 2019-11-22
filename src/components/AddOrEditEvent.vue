@@ -45,7 +45,7 @@
                         rows="4"
                         placeholder="Description"></textarea>
                 </div>
-                <div class="flex sm:justify-center">
+                <div v-if="visibleFormControl" class="flex sm:justify-center">
                     <input
                         type="submit"
                         class="capitalize mr-4 px-4 py-2 bg-green-600 text-white text-xs leading-none focus:outline-none"
@@ -55,6 +55,12 @@
                         class="capitalize px-4 py-2 bg-gray-600 text-white text-xs leading-none">cancel</router-link>
                 </div>
             </form>
+            <div v-if="loading">
+                <img class="w-40 mx-auto" src="../../public/img/load.gif" alt="loading">
+            </div>
+            <div v-if="visibleMessage" class="text-gray-600">
+                {{message}}
+            </div>
         </div>
     </div>
 </template>
@@ -63,8 +69,8 @@
 import Pikaday from '@idecardo/vue-pikaday'
 import VueTimepicker from 'vue2-timepicker'
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
-import * as IdGenerator from '../helpers/IdGenerator'
-import * as TimeStampCalc from '../helpers/TimeStampCalc'
+import generateId from '@/helpers/IdGenerator'
+import calcTimestamp from '@/helpers/TimeStampCalc'
 
 export default {
   props: {
@@ -78,6 +84,10 @@ export default {
     return {
       editing: false,
       submitButtonValue: 'save',
+      loading: false,
+      visibleFormControl: true,
+      visibleMessage: false,
+      message: '',
       eveId: '',
       eveTitle: '',
       eveEntry: '',
@@ -120,16 +130,20 @@ export default {
       if (this.$v.$invalid) {
         console.log('err')
       } else {
+        this.loading = !this.loading
+        this.visibleFormControl = !this.visibleFormControl
         const formData = {
           eventId: this.eveId,
           title: this.eveTitle,
           entry: this.eveEntry,
-          date: this.eveDate,
-          time: this.eveTime,
           desc: this.eveDesc,
-          ts: TimeStampCalc.calcTimestamp(this.eveDate, this.eveTime)
+          ts: calcTimestamp(this.eveDate, this.eveTime)
         }
         this.$store.dispatch('saveEvent', formData)
+        setTimeout(() => {
+          this.loading = !this.loading
+          this.visibleMessage = !this.visibleMessage
+        }, 400)
       }
     }
   },
@@ -138,8 +152,10 @@ export default {
       this.editing = true
       this.eveId = this.eventId
       this.submitButtonValue = 'update'
+      this.message = 'Event updated!'
     } else {
-      this.eveId = IdGenerator.generateId()
+      this.eveId = generateId()
+      this.message = 'Event saved!'
     }
   }
 }

@@ -63,8 +63,8 @@
 import Pikaday from '@idecardo/vue-pikaday'
 import VueTimepicker from 'vue2-timepicker'
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
-import * as IdGenerator from '../helpers/IdGenerator'
-import * as TimeStampCalc from '../helpers/TimeStampCalc'
+import generateId from '../helpers/IdGenerator'
+import calcTimestamp from '../helpers/TimeStampCalc'
 
 export default {
   props: {
@@ -127,7 +127,7 @@ export default {
           date: this.eveDate,
           time: this.eveTime,
           desc: this.eveDesc,
-          ts: TimeStampCalc.calcTimestamp(this.eveDate, this.eveTime)
+          ts: calcTimestamp(this.eveDate, this.eveTime)
         }
         this.$store.dispatch('saveEvent', formData)
       }
@@ -139,7 +139,7 @@ export default {
       this.eveId = this.eventId
       this.submitButtonValue = 'update'
     } else {
-      this.eveId = IdGenerator.generateId()
+      this.eveId = generateId()
     }
   }
 }

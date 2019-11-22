@@ -26,11 +26,19 @@ export default new Vuex.Store({
   mutations: {
     storeEvent (state, event) {
       state.events.push(event)
+    },
+    removeEvent (state, eventId) {
+      const compareIndex = (event) => event.eventId === eventId
+      const index = state.events.findIndex(compareIndex)
+      state.events.splice(index, 1)
     }
   },
   actions: {
     saveEvent ({ commit }, event) {
       commit('storeEvent', event)
+    },
+    deleteEvent ({ commit }, eventId) {
+      commit('removeEvent', eventId)
     }
   },
   modules: {

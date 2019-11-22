@@ -1,22 +1,26 @@
 <template>
     <div>
-    <div>
-        <div class="text-xs font-hairline text-gray-500 pb-1">{{eveDate}} {{eveTime}}</div>
-    </div>
-    <div class="mb-10 flex justify-between pt-3 border-t-2 border-green-600">
-        <div class="flex-shrink-0">
-            <div>
-                <div class="text-xs font-hairline text-gray-500">{{eventData.entry}} $</div>
+        <div>
+            <div class="text-xs font-hairline text-gray-500 pb-1">{{eveDate}}, {{eveTime}}</div>
+        </div>
+        <div class="mb-10 flex justify-between pt-3 border-t-2 border-green-600">
+            <div class="flex-shrink-0">
+                <div>
+                    <div class="text-xs font-hairline text-gray-500">{{eventData.entry}} $</div>
+                </div>
+            </div>
+            <div class="flex-grow px-4">
+                {{eventData.title}}
+            </div>
+            <div class="flex-shrink-0">
+                <div>
+                    <router-link :to="{ name: 'edit-event', params: { eventId: 'hjbsda54q23' }}">edit evet</router-link>
+                </div>
+                <div>
+                    <span @click="deleteEvent" class="capitalize cursor-pointer text-xs font-hairline text-gray-500 outline-none leading-none hover:text-red-600">delete</span>
+                </div>
             </div>
         </div>
-        <div class="flex-grow px-4">
-            {{eventData.title}}
-        </div>
-        <div class="flex-shrink-0">
-          edit
-          del
-        </div>
-    </div>
     </div>
 </template>
 
@@ -31,6 +35,13 @@ export default {
     return {
       eveDate: '',
       eveTime: ''
+    }
+  },
+  methods: {
+    deleteEvent () {
+      if (confirm('Delete event: ' + this.eventData.title + '?')) {
+        this.$store.dispatch('deleteEvent', this.eventData.eventId)
+      }
     }
   },
   created () {

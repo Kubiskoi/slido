@@ -14,7 +14,7 @@
             </div>
             <div class="flex-shrink-0">
                 <div>
-                    <router-link :to="{ name: 'edit-event', params: { eventId: 'hjbsda54q23' }}">edit evet</router-link>
+                    <router-link :to="{ name: 'edit-event', params: { eventId: eventData.eventId }}" class="capitalize cursor-pointer text-xs font-hairline text-gray-500 outline-none leading-none hover:text-green-600">edit</router-link>
                 </div>
                 <div>
                     <span @click="deleteEvent" class="capitalize cursor-pointer text-xs font-hairline text-gray-500 outline-none leading-none hover:text-red-600">delete</span>
@@ -45,7 +45,7 @@ export default {
     }
   },
   created () {
-    const dateTime = getDateAndTime(this.eventData.ts)
+    const dateTime = getDateAndTime(this.eventData.ts, 'show')
     this.eveDate = dateTime.date
     this.eveTime = dateTime.time
   }

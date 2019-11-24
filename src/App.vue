@@ -7,9 +7,11 @@
             <router-link :to="{ name: 'upcoming-events'}" class="nav-link text-sm text-gray-600 mr-4 relative"><span class="font-thin">Upcomming</span> Events</router-link>
             <router-link :to="{ name: 'past-events'}" class="nav-link text-sm text-gray-600 relative"><span class="font-thin">Past</span> Events</router-link>
           </div>
-          <div>
-            <router-link :to="{ name: 'add-event'}" class="text-xs flex h-full items-center px-4 bg-green-600 text-white leading-none">Add<span class="hidden">Event</span></router-link>
-          </div>
+          <transition name="fade">
+            <div v-if="this.$store.getters.addButtonVisibility" class="whitespace-pre">
+              <router-link :to="{ name: 'add-event'}" class="text-xs flex h-full items-center px-4 bg-green-600 hover:bg-green-700 text-white leading-none bg-transition"><span>Add</span><span class="hidden sm:inline-block">&nbsp;Event</span></router-link>
+            </div>
+          </transition>
         </nav>
       </div>
     </div>
@@ -31,8 +33,14 @@ export default {
 <style>
 .fade-enter-active,
 .fade-leave-active {
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  -webkit-transition-property: opacity;
+  -o-transition-property: opacity;
   transition-property: opacity;
+  -webkit-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
   transition-timing-function: ease;
 }
 
@@ -46,9 +54,27 @@ export default {
   display: block;
   position: absolute;
   left: 0;
-  bottom: -2px;
+  bottom: -3px;
   width: 100%;
   height: 2px;
   background-color: #38a169;
+}
+
+.nav-link:not(.router-link-active)::after{
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: #38a169;
+  -webkit-transition: width .2s;
+  -o-transition: width .2s;
+  transition: width .2s;
+}
+
+.nav-link:not(.router-link-active):hover::after{
+  width: 100%;
 }
 </style>

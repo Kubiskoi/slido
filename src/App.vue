@@ -46,7 +46,7 @@ export default {
   display: block;
   position: absolute;
   left: 0;
-  bottom: -2px;
+  bottom: -3px;
   width: 100%;
   height: 2px;
   background-color: #38a169;

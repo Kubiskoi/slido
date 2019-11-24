@@ -1,17 +1,17 @@
 export default [
   {
-    eventId: '9rR4s8UNM3sif2s',
+    eventId: '11111111111111q',
     title: 'Briks',
     entry: 13,
     ts: 1574671100,
-    desc: 'upcoming desc'
+    desc: 'desc 1'
   },
   {
     eventId: '5rR4s8UNM3sif2s',
     title: 'Br the Books',
-    entry: 13,
+    entry: 14,
     ts: 1574671100,
-    desc: 'upcoming desc'
+    desc: 'desc 2'
   },
   {
     eventId: '9rR4s5UNM3sif2s',

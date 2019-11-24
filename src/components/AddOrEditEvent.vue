@@ -69,6 +69,7 @@ import VueTimepicker from 'vue2-timepicker'
 import { required, minValue, decimal } from 'vuelidate/lib/validators'
 import generateId from '@/helpers/IdGenerator'
 import calcTimestamp from '@/helpers/TimeStampCalc'
+import getDateAndTime from '@/helpers/GetDateAndTime'
 
 export default {
   props: {
@@ -137,7 +138,12 @@ export default {
           desc: this.eveDesc,
           ts: calcTimestamp(this.eveDate, this.eveTime)
         }
-        this.$store.dispatch('saveEvent', formData)
+        if (this.editing) {
+          console.log(formData)
+          this.$store.dispatch('updateEvent', formData)
+        } else {
+          this.$store.dispatch('saveEvent', formData)
+        }
         setTimeout(() => {
           this.loading = !this.loading
           this.visibleMessage = !this.visibleMessage
@@ -149,6 +155,16 @@ export default {
     if (typeof this.eventId === 'string' && this.eventId.length > 0) {
       this.editing = true
       this.eveId = this.eventId
+
+      const event = this.$store.getters.eventDetail(this.eveId)
+      const dateTime = getDateAndTime(event.ts, 'edit')
+
+      this.eveTitle = event.title
+      this.eveEntry = event.entry
+      this.eveDate = dateTime.date
+      this.eveTime = dateTime.time
+      this.eveDesc = event.desc
+
       this.submitButtonValue = 'update'
       this.message = 'Event updated!'
     } else {

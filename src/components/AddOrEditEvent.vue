@@ -48,11 +48,9 @@
                 <div v-if="visibleFormControl" class="flex sm:justify-center">
                     <input
                         type="submit"
-                        class="capitalize mr-4 px-4 py-2 bg-green-600 text-white text-xs leading-none focus:outline-none"
+                        class="capitalize mr-4 px-4 py-2 bg-green-600 text-white text-xs leading-none cursor-pointer focus:outline-none"
                         :value="submitButtonValue">
-                    <router-link
-                        :to="{ name: 'events'}"
-                        class="capitalize px-4 py-2 bg-gray-600 text-white text-xs leading-none">cancel</router-link>
+                    <div @click="$router.go(-1)" class="capitalize px-4 py-2 bg-gray-600 text-white text-xs cursor-pointer leading-none">cancel</div>
                 </div>
             </form>
             <div v-if="loading">

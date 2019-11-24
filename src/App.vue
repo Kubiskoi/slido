@@ -3,9 +3,12 @@
     <div class="fixed w-full shadow bg-gray-100">
       <div class="container m-auto px-4 py-4">
         <nav class="flex justify-between">
-          <router-link :to="{ name: 'events'}" class="text-xl text-gray-600"><span class="font-thin">ALL</span> Events</router-link>
           <div>
-            <router-link :to="{ name: 'add-event'}" class="flex h-full items-center px-4 bg-green-600 text-white text-sm leading-none">Add Event</router-link>
+            <router-link :to="{ name: 'upcoming-events'}" class="nav-link text-sm text-gray-600 mr-4 relative"><span class="font-thin">Upcomming</span> Events</router-link>
+            <router-link :to="{ name: 'past-events'}" class="nav-link text-sm text-gray-600 relative"><span class="font-thin">Past</span> Events</router-link>
+          </div>
+          <div>
+            <router-link :to="{ name: 'add-event'}" class="text-xs flex h-full items-center px-4 bg-green-600 text-white leading-none">Add<span class="hidden">Event</span></router-link>
           </div>
         </nav>
       </div>
@@ -36,5 +39,16 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0
+}
+
+.nav-link.router-link-active::after{
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #38a169;
 }
 </style>

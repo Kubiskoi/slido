@@ -127,7 +127,7 @@ export default {
     onSubmit () {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        console.log('error in form inputs')
+      //  console.log('error in form inputs')
       } else {
         this.loading = !this.loading
         this.visibleFormControl = !this.visibleFormControl

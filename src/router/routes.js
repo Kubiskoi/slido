@@ -1,12 +1,22 @@
-import Events from '@/views/Events.vue'
+import UpcommingEvents from '@/views/UpcomingEvents.vue'
+import PastEvents from '@/views/PastEvents.vue'
 import AddEvent from '@/views/AddEvent.vue'
 import EditEvent from '@/views/EditEvent.vue'
 
 export default [
   {
     path: '/',
-    name: 'events',
-    component: Events
+    redirect: '/upcoming-events'
+  },
+  {
+    path: '/upcoming-events',
+    name: 'upcoming-events',
+    component: UpcommingEvents
+  },
+  {
+    path: '/past-events',
+    name: 'past-events',
+    component: PastEvents
   },
   {
     path: '/add-event',

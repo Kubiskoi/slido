@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    events
+    events,
+    showAddButton: true
   },
   getters: {
     eventDetail: state => {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
       return state.events.filter((event) => {
         return event.ts < now
       })
+    },
+    addButtonVisibility: state => {
+      return state.showAddButton
     }
   },
   mutations: {
@@ -44,6 +48,9 @@ export default new Vuex.Store({
     removeEvent (state, eventId) {
       const index = findIndex(state.events, eventId)
       state.events.splice(index, 1)
+    },
+    toggleAddButton (state) {
+      state.showAddButton = !state.showAddButton
     }
   },
   actions: {
@@ -55,6 +62,9 @@ export default new Vuex.Store({
     },
     deleteEvent ({ commit }, eventId) {
       commit('removeEvent', eventId)
+    },
+    toggleAddButton ({ commit }) {
+      commit('toggleAddButton')
     }
   },
   modules: {

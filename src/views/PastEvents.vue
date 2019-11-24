@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2 class="text-xl capitalize text-gray-600 mb-4">past events</h2>
-        <div>
+        <div class="max-w-md">
             <Event v-for="event in events" :key="event.eventId" :event-data="event"/>
             <div v-if="!eventsLength" class="capitalize p-5 font-thin text-gray-600">no past events ...</div>
         </div>

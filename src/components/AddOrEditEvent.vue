@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="max-w-sm mx-auto">
+        <div class="max-w-sm">
             <form @submit.prevent="onSubmit">
                 <div class="mb-4">
                     <input
@@ -45,12 +45,12 @@
                         rows="4"
                         placeholder="Description"></textarea>
                 </div>
-                <div v-if="visibleFormControl" class="flex sm:justify-center">
+                <div v-if="visibleFormControl" class="flex">
                     <input
                         type="submit"
-                        class="capitalize mr-4 px-4 py-2 bg-green-600 text-white text-xs leading-none cursor-pointer focus:outline-none"
+                        class="capitalize mr-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs leading-none cursor-pointer focus:outline-none bg-transition"
                         :value="submitButtonValue">
-                    <div @click="$router.go(-1)" class="capitalize px-4 py-2 bg-gray-600 text-white text-xs cursor-pointer leading-none">cancel</div>
+                    <div @click="$router.go(-1)" class="capitalize px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-xs cursor-pointer leading-none bg-transition">cancel</div>
                 </div>
             </form>
             <div v-if="loading">
@@ -127,7 +127,7 @@ export default {
     onSubmit () {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        console.log('err')
+        console.log('error in form inputs')
       } else {
         this.loading = !this.loading
         this.visibleFormControl = !this.visibleFormControl
@@ -139,7 +139,6 @@ export default {
           ts: calcTimestamp(this.eveDate, this.eveTime)
         }
         if (this.editing) {
-          console.log(formData)
           this.$store.dispatch('updateEvent', formData)
         } else {
           this.$store.dispatch('saveEvent', formData)
@@ -152,6 +151,8 @@ export default {
     }
   },
   created () {
+    this.$store.dispatch('toggleAddButton')
+
     if (typeof this.eventId === 'string' && this.eventId.length > 0) {
       this.editing = true
       this.eveId = this.eventId
@@ -171,6 +172,9 @@ export default {
       this.eveId = generateId()
       this.message = 'Event saved!'
     }
+  },
+  destroyed () {
+    this.$store.dispatch('toggleAddButton')
   }
 }
 </script>

@@ -2,6 +2,7 @@ import UpcommingEvents from '@/views/UpcomingEvents.vue'
 import PastEvents from '@/views/PastEvents.vue'
 import AddEvent from '@/views/AddEvent.vue'
 import EditEvent from '@/views/EditEvent.vue'
+import PageNotFound from '@/views/PageNotFound.vue'
 
 export default [
   {
@@ -27,5 +28,9 @@ export default [
     path: '/edit-event/:eventId',
     name: 'edit-event',
     component: EditEvent
+  },
+  {
+    path: '*',
+    component: PageNotFound
   }
 ]

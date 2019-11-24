@@ -1,6 +1,34 @@
 export default [
   {
     eventId: '9rR4s8UNM3sif2s',
+    title: 'Briks',
+    entry: 13,
+    ts: 1574671100,
+    desc: 'upcoming desc'
+  },
+  {
+    eventId: '5rR4s8UNM3sif2s',
+    title: 'Br the Books',
+    entry: 13,
+    ts: 1574671100,
+    desc: 'upcoming desc'
+  },
+  {
+    eventId: '9rR4s5UNM3sif2s',
+    title: 'Bring ooks',
+    entry: 13,
+    ts: 1574671100,
+    desc: 'upcoming desc'
+  },
+  {
+    eventId: '9rR4s8UN53sif2s',
+    title: 'Bring Me the Books',
+    entry: 13,
+    ts: 1574671100,
+    desc: 'upcoming desc'
+  },
+  {
+    eventId: '9rRss3UNM3sif2s',
     title: 'Bring Me the Books',
     entry: 13,
     ts: 1574671100,

@@ -8,7 +8,7 @@
               <div class="text-xs font-hairline text-gray-500">{{eventData.entry}} $</div>
             </div>
             <div class="flex-grow px-4">
-                {{eventData.title}}
+                <router-link :to="{ name: 'event-details', params: { eventId: eventData.eventId }}" class="cursor-pointer outline-none leading-none hover:text-green-600 color-transition">{{eventData.title}}</router-link>
             </div>
             <div class="flex-shrink-0">
                 <div>

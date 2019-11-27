@@ -1,22 +1,25 @@
 <template>
     <div>
-        <SectionTitle title='edit event'/>
-        <AddOrEditEvent :eventId='this.eventId'/>
+        <SectionTitle title='event details'/>
+        {{event}}
     </div>
 </template>
 
 <script>
-import AddOrEditEvent from '@/components/AddOrEditEvent.vue'
 import SectionTitle from '@/components/SectionTitle.vue'
 
 export default {
   components: {
-    AddOrEditEvent,
     SectionTitle
   },
   data () {
     return {
       eventId: ''
+    }
+  },
+  computed: {
+    event () {
+      return this.$store.getters.eventDetail(this.eventId)
     }
   },
   created () {

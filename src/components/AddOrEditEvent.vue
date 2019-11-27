@@ -158,6 +158,11 @@ export default {
       this.eveId = this.eventId
 
       const event = this.$store.getters.eventDetail(this.eveId)
+      if (typeof event === 'undefined') {
+        this.$router.push('/404')
+        return
+      }
+
       const dateTime = getDateAndTime(event.ts, 'edit')
 
       this.eveTitle = event.title

@@ -200,6 +200,6 @@ export default {
 }
 
 .desc{
-  resize: none;
+  resize: vertical;
 }
 </style>

@@ -48,7 +48,7 @@
                 <div v-if="visibleFormControl" class="flex">
                     <input
                         type="submit"
-                        class="capitalize mr-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs leading-none cursor-pointer focus:outline-none bg-transition"
+                        class="capitalize appearance-none rounded-none mr-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs leading-none cursor-pointer focus:outline-none bg-transition"
                         :value="submitButtonValue">
                     <div @click="$router.go(-1)" class="capitalize px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-xs cursor-pointer leading-none bg-transition">cancel</div>
                 </div>

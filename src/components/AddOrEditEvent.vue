@@ -5,7 +5,7 @@
                 <div class="mb-4">
                     <input
                         v-model="eveTitle"
-                        class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                        class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
                         :class="{ 'border-red-600': $v.eveTitle.$error, 'border-green-600': !$v.eveTitle.$error}"
                         type="text"
                         placeholder="Title">
@@ -13,7 +13,7 @@
                 <div class="mb-4">
                     <input
                         v-model.number="eveEntry"
-                        class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                        class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
                         :class="{ 'border-red-600': $v.eveEntry.$error, 'border-green-600': !$v.eveEntry.$error}"
                         type="number"
                         step="0.01"
@@ -23,7 +23,7 @@
                     <div class="mb-4 sm:w-5/12">
                         <pikaday
                             v-model="eveDate"
-                            class="appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                            class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
                             :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"
                             placeholder="Date"></pikaday>
                     </div>
@@ -39,7 +39,7 @@
                 <div class="mb-4">
                     <textarea
                         v-model="eveDesc"
-                        class="desc appearance-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+                        class="desc appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
                         :class="{ 'border-red-600': $v.eveDesc.$error, 'border-green-600': !$v.eveDesc.$error}"
                         cols="30"
                         rows="4"
@@ -117,9 +117,9 @@ export default {
   computed: {
     tp () {
       if (this.$v.eveTime.$error) {
-        return 'tp tp-error'
+        return 'tp tp-error rounded-none'
       } else {
-        return 'tp tp-ok'
+        return 'tp tp-ok rounded-none'
       }
     }
   },

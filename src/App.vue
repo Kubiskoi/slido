@@ -4,8 +4,8 @@
       <div class="container m-auto px-4 py-4">
         <nav class="flex justify-between">
           <div>
-            <router-link :to="{ name: 'upcoming-events'}" class="nav-link text-sm text-gray-600 mr-4 relative"><span class="font-thin">Upcomming</span> Events</router-link>
-            <router-link :to="{ name: 'past-events'}" class="nav-link text-sm text-gray-600 relative"><span class="font-thin">Past</span> Events</router-link>
+            <router-link :to="{ name: 'upcoming-events'}" class="nav-link text-sm md:text-xl text-gray-600 mr-4 relative"><span class="font-light">Upcoming</span> Events</router-link>
+            <router-link :to="{ name: 'past-events'}" class="nav-link text-sm md:text-xl text-gray-600 relative"><span class="font-light">Past</span> Events</router-link>
           </div>
           <transition name="fade">
             <div v-if="this.$store.getters.addButtonVisibility" class="whitespace-pre">

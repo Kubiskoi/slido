@@ -1,21 +1,21 @@
 <template>
     <div>
         <div>
-            <div class="text-xs font-hairline text-gray-500 pb-1">{{eveDate}}, {{eveTime}}</div>
+            <div class="text-xs font-light text-gray-600 pb-1">{{eveDate}}, {{eveTime}}</div>
         </div>
         <div class="mb-10 flex justify-between pt-3 border-t-2 border-green-600">
             <div class="flex-shrink-0">
-              <div class="text-xs font-hairline text-gray-500">{{eventData.entry}} $</div>
+              <div class="text-xs font-light text-gray-600">{{eventData.entry}} $</div>
             </div>
             <div class="flex-grow px-4">
-                {{eventData.title}}
+                <router-link :to="{ name: 'event-details', params: { eventId: eventData.eventId }}" class="cursor-pointer outline-none leading-none hover:text-green-600 color-transition">{{eventData.title}}</router-link>
             </div>
             <div class="flex-shrink-0">
                 <div>
-                    <router-link :to="{ name: 'edit-event', params: { eventId: eventData.eventId }}" class="capitalize cursor-pointer text-xs font-hairline text-gray-500 outline-none leading-none hover:text-green-600">edit</router-link>
+                    <router-link :to="{ name: 'edit-event', params: { eventId: eventData.eventId }}" class="capitalize cursor-pointer text-xs font-light text-gray-600 outline-none leading-none hover:text-green-600">edit</router-link>
                 </div>
                 <div>
-                    <span @click="deleteEvent" class="capitalize cursor-pointer text-xs font-hairline text-gray-500 outline-none leading-none hover:text-red-600">delete</span>
+                    <span @click="deleteEvent" class="capitalize cursor-pointer text-xs font-light text-gray-600 outline-none leading-none hover:text-red-600">delete</span>
                 </div>
             </div>
         </div>

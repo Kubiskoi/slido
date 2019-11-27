@@ -1,17 +1,18 @@
 <template>
     <div>
-        <div @click="$router.go(-1)" class="capitalize font-hairline text-gray-500 cursor-pointer leading-none hover:underline">back</div>
-        <h1 class="text-xl capitalize text-gray-600 mt-6 mb-4">add event</h1>
+        <SectionTitle title='add event'/>
         <AddOrEditEvent/>
     </div>
 </template>
 
 <script>
 import AddOrEditEvent from '@/components/AddOrEditEvent.vue'
+import SectionTitle from '@/components/SectionTitle.vue'
 
 export default {
   components: {
-    AddOrEditEvent
+    AddOrEditEvent,
+    SectionTitle
   }
 }
 </script>

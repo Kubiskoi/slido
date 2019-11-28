@@ -92,7 +92,8 @@ export default {
       eveEntry: '',
       eveDate: '',
       eveTime: '',
-      eveDesc: ''
+      eveDesc: '',
+      originalEvent: {}
     }
   },
   validations: {
@@ -139,6 +140,8 @@ export default {
           ts: calcTimestamp(this.eveDate, this.eveTime)
         }
         if (this.editing) {
+          console.log(formData)
+          console.log(this.originalEvent)
           this.$store.dispatch('updateEvent', formData)
         } else {
           this.$store.dispatch('saveEvent', formData)
@@ -157,19 +160,19 @@ export default {
       this.editing = true
       this.eveId = this.eventId
 
-      const event = this.$store.getters.eventDetail(this.eveId)
-      if (typeof event === 'undefined') {
+      this.originalEvent = this.$store.getters.eventDetail(this.eveId)
+      if (typeof this.originalEvent === 'undefined') {
         this.$router.push('/404')
         return
       }
 
-      const dateTime = getDateAndTime(event.ts, 'edit')
+      const dateTime = getDateAndTime(this.originalEvent.ts, 'edit')
 
-      this.eveTitle = event.title
-      this.eveEntry = event.entry
+      this.eveTitle = this.originalEvent.title
+      this.eveEntry = this.originalEvent.entry
       this.eveDate = dateTime.date
       this.eveTime = dateTime.time
-      this.eveDesc = event.desc
+      this.eveDesc = this.originalEvent.desc
 
       this.submitButtonValue = 'update'
       this.message = 'Event updated!'

@@ -7,6 +7,13 @@ export default [
     desc: 'English rock outfit Alt-J -- named for the delta symbol that appears when pressing "Alt" and "J" on a Mac keyboard -- deliver eccentric indie rock that experiments with rhythm, song structure, percussion, and space. Following the 2012 release of their critically acclaimed, award-winning debut, An Awesome Wave, they expanded their scope with 2014\'s This Is All Yours and 2017\'s Relaxer.'
   },
   {
+    eventId: '9rR4d8UNM3sif2s',
+    title: 'First Aid Kit',
+    entry: 22,
+    ts: 1584214200,
+    desc: 'A Swedish indie folk duo with a devoted international following, First Aid Kit blend the bright vocal harmonies and pastoral, contemplative songwriting of sisters Klara and Johanna Söderberg. After receiving radio play in Sweden as teenagers, they went on to chart across Europe and in the U.S. and Australia with albums such as The Lion\'s Roar (2012) and Ruins (2018). Often accompanied by a backing band, the group has staged Leonard Cohen tribute concerts and covered other musicians including Simon & Garfunkel, R.E.M., and Kate Bush.'
+  },
+  {
     eventId: '5rR4s8UNM3sif2s',
     title: 'CloZee',
     entry: 24,
@@ -63,10 +70,10 @@ export default [
     desc: 'Sudan Archives contains multitudes. She first emerged as an avant-garde violinist who channeled her playing through loop pedals. But she\'s also much more than that: lovelorn songwriter, powerful vocal performer, and experimental beatmaker.'
   },
   {
-    eventId: '9rR4d8UNM3sif2s',
-    title: 'First Aid Kit',
+    eventId: '9rR4d8UNM3dif2s',
+    title: 'First Fake',
     entry: 22,
-    ts: 1584214200,
+    ts: 1594214200,
     desc: 'A Swedish indie folk duo with a devoted international following, First Aid Kit blend the bright vocal harmonies and pastoral, contemplative songwriting of sisters Klara and Johanna Söderberg. After receiving radio play in Sweden as teenagers, they went on to chart across Europe and in the U.S. and Australia with albums such as The Lion\'s Roar (2012) and Ruins (2018). Often accompanied by a backing band, the group has staged Leonard Cohen tribute concerts and covered other musicians including Simon & Garfunkel, R.E.M., and Kate Bush.'
   }
 ]

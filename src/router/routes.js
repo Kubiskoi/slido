@@ -1,5 +1,3 @@
-// import UpcommingEvents from '@/views/UpcomingEvents.vue'
-// import PastEvents from '@/views/PastEvents.vue'
 import Events from '@/views/Events.vue'
 import AddEvent from '@/views/AddEvent.vue'
 import EditEvent from '@/views/EditEvent.vue'

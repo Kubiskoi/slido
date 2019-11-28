@@ -31,14 +31,8 @@ export default {
   },
   computed: {
     events () {
-      let events = []
-      if (this.$router.currentRoute.name === 'past-events') {
-        events = this.$store.getters.pastEvents
-        events.sort((a, b) => (a.ts <= b.ts) ? 1 : -1)
-      } else if (this.$router.currentRoute.name === 'upcoming-events') {
-        events = this.$store.getters.upcomingEvents
-        events.sort((a, b) => (a.ts >= b.ts) ? 1 : -1)
-      }
+      let events = this.$store.getters.pastEvents
+      events.sort((a, b) => (a.ts <= b.ts) ? 1 : -1)
       if (this.searchString === '') {
         return events
       } else {

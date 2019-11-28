@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <SectionTitle title='add event'/>
-        <AddOrEditEvent/>
-    </div>
+  <div>
+    <SectionTitle title='add event'/>
+    <AddOrEditEvent/>
+  </div>
 </template>
 
 <script>

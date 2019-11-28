@@ -1,69 +1,67 @@
 <template>
-    <div>
-        <div class="max-w-sm">
-            <form @submit.prevent="onSubmit">
-                <div class="mb-4">
-                    <input
-                        v-model="eveTitle"
-                        class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
-                        :class="{ 'border-red-600': $v.eveTitle.$error, 'border-green-600': !$v.eveTitle.$error}"
-                        type="text"
-                        placeholder="Title">
-                </div>
-                <div class="mb-4">
-                    <input
-                        v-model.number="eveEntry"
-                        class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
-                        :class="{ 'border-red-600': $v.eveEntry.$error, 'border-green-600': !$v.eveEntry.$error}"
-                        type="number"
-                        step="0.01"
-                        placeholder="Entry $">
-                </div>
-                <div class="sm:flex sm:justify-between">
-                    <div class="mb-4 sm:w-5/12">
-                        <pikaday
-                            v-model="eveDate"
-                            class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
-                            :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"
-                            placeholder="Date"></pikaday>
-                    </div>
-                    <div class="mb-4 sm:w-5/12">
-                        <vue-timepicker
-                            v-model="eveTime"
-                            class="tp-wrap"
-                            :input-class="tp"
-                            placeholder="Time"
-                            close-on-complete></vue-timepicker>
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <textarea
-                        v-model="eveDesc"
-                        class="desc appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
-                        :class="{ 'border-red-600': $v.eveDesc.$error, 'border-green-600': !$v.eveDesc.$error}"
-                        cols="30"
-                        rows="4"
-                        placeholder="Description"></textarea>
-                </div>
-                <div v-if="visibleFormControl" class="flex">
-                    <input
-                        type="submit"
-                        class="capitalize appearance-none rounded-none mr-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs leading-none cursor-pointer focus:outline-none bg-transition"
-                        :value="submitButtonValue">
-                    <div @click="$router.go(-1)" class="capitalize px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-xs cursor-pointer leading-none bg-transition">cancel</div>
-                </div>
-                <div v-show="sameEventData" class="text-red-800 mt-4">
-                  Please update at least one field.
-                </div>
-            </form>
-            <div v-if="loading">
-                <img class="w-40 mx-auto" src="../../public/img/load.gif" alt="loading">
-            </div>
-            <div v-if="visibleMessage" class="text-gray-600">
-                {{message}}
-            </div>
+  <div>
+    <div class="max-w-sm">
+      <form @submit.prevent="onSubmit">
+        <div class="mb-4">
+          <input
+            v-model="eveTitle"
+            class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+            :class="{ 'border-red-600': $v.eveTitle.$error, 'border-green-600': !$v.eveTitle.$error}"
+            type="text"
+            placeholder="Title">
         </div>
+        <div class="mb-4">
+          <input
+            v-model.number="eveEntry"
+            class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+            :class="{ 'border-red-600': $v.eveEntry.$error, 'border-green-600': !$v.eveEntry.$error}"
+            type="number"
+            step="0.01"
+            placeholder="Entry $">
+        </div>
+        <div class="sm:flex sm:justify-between">
+          <div class="mb-4 sm:w-5/12">
+            <pikaday
+              v-model="eveDate"
+              class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+              :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"
+              placeholder="Date"></pikaday>
+          </div>
+          <div class="mb-4 sm:w-5/12">
+            <vue-timepicker
+              v-model="eveTime"
+              class="tp-wrap"
+              :input-class="tp"
+              placeholder="Time"
+              close-on-complete></vue-timepicker>
+          </div>
+        </div>
+        <div class="mb-4">
+          <textarea
+            v-model="eveDesc"
+            class="desc appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
+            :class="{ 'border-red-600': $v.eveDesc.$error, 'border-green-600': !$v.eveDesc.$error}"
+            cols="30"
+            rows="4"
+            placeholder="Description"></textarea>
+        </div>
+        <div v-if="visibleFormControl" class="flex">
+          <input
+            type="submit"
+            class="capitalize appearance-none rounded-none mr-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-xs leading-none cursor-pointer focus:outline-none bg-transition"
+            :value="submitButtonValue">
+          <div @click="$router.go(-1)" class="capitalize px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-xs cursor-pointer leading-none bg-transition">cancel</div>
+        </div>
+        <div v-show="sameEventData" class="text-red-800 mt-4">Please update at least one field.</div>
+      </form>
+      <div v-if="loading">
+        <img class="w-40 mx-auto" src="../../public/img/load.gif" alt="loading">
+      </div>
+      <div v-if="visibleMessage" class="text-gray-600">
+        {{message}}
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

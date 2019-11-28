@@ -1,13 +1,13 @@
 <template>
-    <div>
-        <h2 class="text-xl capitalize text-gray-600 mb-4">past events</h2>
-        <div class="max-w-md">
-            <transition-group name="event-list">
-              <Event v-for="event in events" :key="event.eventId" :event-data="event"/>
-            </transition-group>
-            <div v-if="!eventsLength" class="capitalize p-5 font-thin text-gray-600">no past events ...</div>
-        </div>
+  <div>
+    <h2 class="text-xl capitalize text-gray-600 mb-4">past events</h2>
+    <div class="max-w-md">
+      <transition-group name="event-list">
+        <Event v-for="event in events" :key="event.eventId" :event-data="event"/>
+      </transition-group>
+      <div v-if="!eventsLength" class="capitalize p-5 font-thin text-gray-600">no past events ...</div>
     </div>
+  </div>
 </template>
 
 <script>

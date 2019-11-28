@@ -52,6 +52,9 @@
                         :value="submitButtonValue">
                     <div @click="$router.go(-1)" class="capitalize px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-xs cursor-pointer leading-none bg-transition">cancel</div>
                 </div>
+                <div v-show="sameEventData" class="text-red-800 mt-4">
+                  Please update at least one field.
+                </div>
             </form>
             <div v-if="loading">
                 <img class="w-40 mx-auto" src="../../public/img/load.gif" alt="loading">
@@ -70,6 +73,7 @@ import { required, minValue, decimal } from 'vuelidate/lib/validators'
 import generateId from '@/helpers/IdGenerator'
 import calcTimestamp from '@/helpers/TimeStampCalc'
 import getDateAndTime from '@/helpers/GetDateAndTime'
+import { isEqual } from 'lodash'
 
 export default {
   props: {
@@ -93,7 +97,8 @@ export default {
       eveDate: '',
       eveTime: '',
       eveDesc: '',
-      originalEvent: {}
+      originalEvent: {},
+      sameEventData: false
     }
   },
   validations: {
@@ -130,8 +135,6 @@ export default {
       if (this.$v.$invalid) {
       //  console.log('error in form inputs')
       } else {
-        this.loading = !this.loading
-        this.visibleFormControl = !this.visibleFormControl
         const formData = {
           eventId: this.eveId,
           title: this.eveTitle,
@@ -140,12 +143,20 @@ export default {
           ts: calcTimestamp(this.eveDate, this.eveTime)
         }
         if (this.editing) {
-          console.log(formData)
-          console.log(this.originalEvent)
+          if (isEqual(formData, this.originalEvent)) {
+            this.sameEventData = true
+            return
+          } else {
+            this.sameEventData = false
+          }
           this.$store.dispatch('updateEvent', formData)
         } else {
           this.$store.dispatch('saveEvent', formData)
         }
+
+        this.loading = !this.loading
+        this.visibleFormControl = !this.visibleFormControl
+
         setTimeout(() => {
           this.loading = !this.loading
           this.visibleMessage = !this.visibleMessage

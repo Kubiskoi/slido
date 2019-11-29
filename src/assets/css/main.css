@@ -3,13 +3,30 @@
 @tailwind utilities;
 
 .bg-transition{
-    -webkit-transition: background-color .2s;
-    -o-transition: background-color .2s;
-    transition: background-color .2s;
+  -webkit-transition: background-color .2s;
+  -o-transition: background-color .2s;
+  transition: background-color .2s;
 }
 
 .color-transition{
-    -webkit-transition: color .2s;
-    -o-transition: color .2s;
-    transition: color .2s;
+  -webkit-transition: color .2s;
+  -o-transition: color .2s;
+  transition: color .2s;
+}
+
+.search-wrap{
+    top: 56px;
+}
+  
+@media screen and (min-width: 768px){
+  .search-wrap{
+    top: 62px;
+  }
+}
+  
+.search-transition{
+  height: 20px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, rgba(255,255,255,1)), to(rgba(255,255,255,0)));
+  background: -o-linear-gradient(top, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
 }

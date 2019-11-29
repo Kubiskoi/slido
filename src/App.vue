@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fixed w-full shadow bg-gray-100">
+    <div class="fixed w-full shadow bg-gray-100 z-50">
       <div class="container m-auto px-4 py-4">
         <nav class="flex justify-between">
           <div>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <transition name="fade" mode="out-in">
-      <router-view class="container px-6 mx-auto pt-20"/>
+      <router-view class="router-view container px-6 mx-auto relative"/>
     </transition>
   </div>
 </template>
@@ -31,6 +31,16 @@ export default {
 </script>
 
 <style>
+.router-view{
+  top: 56px;
+}
+
+@media screen and (min-width: 768px){
+  .router-view{
+    top: 62px;
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   -webkit-transition-duration: 0.3s;

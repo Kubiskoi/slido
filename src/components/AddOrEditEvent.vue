@@ -2,15 +2,16 @@
   <div>
     <div class="max-w-sm">
       <form @submit.prevent="onSubmit">
-        <div class="mb-4">
+        <div class="mb-6 relative">
           <input
             v-model="eveTitle"
             class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
             :class="{ 'border-red-600': $v.eveTitle.$error, 'border-green-600': !$v.eveTitle.$error}"
             type="text"
             placeholder="Title">
+          <div v-if="$v.eveTitle.$error" class="absolute text-red-600 text-xs">Error in this field!</div>
         </div>
-        <div class="mb-4">
+        <div class="mb-6 relative">
           <input
             v-model.number="eveEntry"
             class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
@@ -18,25 +19,28 @@
             type="number"
             step="0.01"
             placeholder="Entry $">
+          <div v-if="$v.eveEntry.$error" class="absolute text-red-600 text-xs">Error in this field!</div>
         </div>
         <div class="sm:flex sm:justify-between">
-          <div class="mb-4 sm:w-5/12">
+          <div class="mb-6 relative sm:w-5/12">
             <pikaday
               v-model="eveDate"
               class="appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
               :class="{ 'border-red-600': $v.eveDate.$error, 'border-green-600': !$v.eveDate.$error}"
               placeholder="Date"></pikaday>
+            <div v-if="$v.eveDate.$error" class="absolute text-red-600 text-xs">Error in this field!</div>
           </div>
-          <div class="mb-4 sm:w-5/12">
+          <div class="mb-6 relative sm:w-5/12">
             <vue-timepicker
               v-model="eveTime"
               class="tp-wrap"
               :input-class="tp"
               placeholder="Time"
               close-on-complete></vue-timepicker>
+            <div v-if="$v.eveTime.$error" class="absolute text-red-600 text-xs">Error in this field!</div>
           </div>
         </div>
-        <div class="mb-4">
+        <div class="mb-6 relative">
           <textarea
             v-model="eveDesc"
             class="desc appearance-none rounded-none bg-transparent w-full text-gray-700 py-1 px-2 leading-tight border-b-2 focus:outline-none"
@@ -44,6 +48,7 @@
             cols="30"
             rows="4"
             placeholder="Description"></textarea>
+          <div v-if="$v.eveDesc.$error" class="absolute text-red-600 text-xs">Error in this field!</div>
         </div>
         <div v-if="visibleFormControl" class="flex">
           <input
@@ -55,7 +60,7 @@
         <div v-show="sameEventData" class="text-red-800 mt-4">Please update at least one field.</div>
       </form>
       <div v-if="loading">
-        <img class="w-40 mx-auto" src="../../public/img/load.gif" alt="loading">
+        <img class="w-10 p-2 mx-auto" src="../../public/img/load.gif" alt="loading">
       </div>
       <div v-if="visibleMessage" class="text-gray-600">
         {{message}}
@@ -131,7 +136,7 @@ export default {
     onSubmit () {
       this.$v.$touch()
       if (this.$v.$invalid) {
-      //  console.log('error in form inputs')
+      // console.log('error')
       } else {
         const formData = {
           eventId: this.eveId,

@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div class="mb-10">
-      <input
-        class="appearance-none rounded-none bg-transparent border-b-2 border-green-600 text-gray-700 py-1 px-2 focus:outline-none"
-        type="text"
-        @input="search"
-        placeholder="Search">
+    <div class="search-wrap sticky">
+      <div class="bg-white pt-6">
+        <input
+          class="appearance-none rounded-none bg-transparent border-b-2 border-green-600 text-gray-700 py-1 px-2 focus:outline-none"
+          type="text"
+          @input="search"
+          placeholder="Search">
+      </div>
+      <div class="search-transition"></div>
     </div>
     <div class="max-w-md">
       <transition-group name="event-list">
